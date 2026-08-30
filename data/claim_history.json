@@ -1,0 +1,44 @@
+{
+  "claims": [
+    {
+      "claim_id": "TPC1001",
+      "policy_number": "POL10002",
+      "claim_date": "2025-09-12",
+      "fir_number": "FIR2025090112",
+      "point_of_impact": "front_bumper",
+      "third_party_vehicle_number": "TN45XY9988",
+      "amount_claimed": 8000,
+      "status": "settled"
+    },
+    {
+      "claim_id": "TPC1002",
+      "policy_number": "POL10006",
+      "claim_date": "2026-01-20",
+      "fir_number": "FIR2026012045",
+      "point_of_impact": "rear_bumper",
+      "third_party_vehicle_number": "TN12UV5566",
+      "amount_claimed": 6500,
+      "status": "settled"
+    },
+    {
+      "claim_id": "TPC1003",
+      "policy_number": "POL10006",
+      "claim_date": "2026-07-05",
+      "fir_number": "FIR2026070533",
+      "point_of_impact": "door",
+      "third_party_vehicle_number": "TN12UV5566",
+      "amount_claimed": 12000,
+      "status": "under_review"
+    },
+    {
+      "claim_id": "TPC1004",
+      "policy_number": "POL10005",
+      "claim_date": "2026-03-14",
+      "fir_number": "FIR2026031421",
+      "point_of_impact": "headlight",
+      "third_party_vehicle_number": "TN08WX3321",
+      "amount_claimed": 4200,
+      "status": "settled"
+    }
+  ]
+}

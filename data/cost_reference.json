@@ -1,0 +1,53 @@
+
+{
+  "front_bumper": {
+    "minor": [2000, 5000],
+    "moderate": [5000, 12000],
+    "severe": [12000, 25000]
+  },
+  "rear_bumper": {
+    "minor": [2000, 5000],
+    "moderate": [5000, 12000],
+    "severe": [12000, 25000]
+  },
+  "headlight": {
+    "minor": [1500, 3000],
+    "moderate": [3000, 8000],
+    "severe": [8000, 15000]
+  },
+  "door": {
+    "minor": [3000, 7000],
+    "moderate": [7000, 18000],
+    "severe": [18000, 35000]
+  },
+  "windshield": {
+    "minor": [2500, 5000],
+    "moderate": [5000, 10000],
+    "severe": [10000, 20000]
+  },
+  "fender": {
+    "minor": [2000, 6000],
+    "moderate": [6000, 15000],
+    "severe": [15000, 28000]
+  },
+  "bonnet": {
+    "minor": [3000, 7000],
+    "moderate": [7000, 16000],
+    "severe": [16000, 30000]
+  },
+  "side_mirror": {
+    "minor": [800, 1500],
+    "moderate": [1500, 3500],
+    "severe": [3500, 6000]
+  },
+  "tail_light": {
+    "minor": [1000, 2500],
+    "moderate": [2500, 5000],
+    "severe": [5000, 9000]
+  },
+  "wheel_rim": {
+    "minor": [1500, 3500],
+    "moderate": [3500, 8000],
+    "severe": [8000, 15000]
+  }
+}

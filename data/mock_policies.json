@@ -1,0 +1,132 @@
+{
+  "POL10001": {
+    "policyholder_name": "Ramesh Kumar",
+    "vehicle_number": "TN09AB1234",
+    "vehicle_model": "Maruti Swift",
+    "policy_start_date": "2025-04-01",
+    "policy_end_date": "2027-03-31",
+    "licence_number": "TN0120210001234",
+    "licence_valid": true,
+    "licence_expiry": "2028-06-15",
+    "previous_claims": []
+  },
+  "POL10002": {
+    "policyholder_name": "Priya Raghavan",
+    "vehicle_number": "TN22CD5678",
+    "vehicle_model": "Hyundai i20",
+    "policy_start_date": "2025-01-15",
+    "policy_end_date": "2026-01-14",
+    "licence_number": "TN0120180005678",
+    "licence_valid": true,
+    "licence_expiry": "2027-11-20",
+    "previous_claims": [
+      {
+        "claim_id": "CLM5001",
+        "date": "2025-08-10",
+        "part_damaged": "front_bumper",
+        "amount_settled": 4500
+      }
+    ]
+  },
+  "POL10003": {
+    "policyholder_name": "Arun Vijay",
+    "vehicle_number": "TN01EF9012",
+    "vehicle_model": "Honda City",
+    "policy_start_date": "2024-06-01",
+    "policy_end_date": "2025-05-31",
+    "licence_number": "TN0120150009012",
+    "licence_valid": true,
+    "licence_expiry": "2026-02-28",
+    "previous_claims": []
+  },
+  "POL10004": {
+    "policyholder_name": "Deepa Suresh",
+    "vehicle_number": "TN10GH3456",
+    "vehicle_model": "Tata Nexon",
+    "policy_start_date": "2025-07-01",
+    "policy_end_date": "2026-06-30",
+    "licence_number": "TN0120220003456",
+    "licence_valid": false,
+    "licence_expiry": "2025-01-10",
+    "previous_claims": []
+  },
+    "POL10005": {
+    "policyholder_name": "Karthik Subramaniam",
+    "vehicle_number": "TN07IJ7890",
+    "vehicle_model": "Toyota Innova",
+    "policy_start_date": "2025-09-01",
+    "policy_end_date": "2026-08-31",
+    "licence_number": "TN0120190007890",
+    "licence_valid": true,
+    "licence_expiry": "2029-03-12",
+    "previous_claims": []
+  },
+  "POL10006": {
+    "policyholder_name": "Meena Natarajan",
+    "vehicle_number": "TN14KL2345",
+    "vehicle_model": "Kia Seltos",
+    "policy_start_date": "2025-05-10",
+    "policy_end_date": "2026-05-09",
+    "licence_number": "TN0120170002345",
+    "licence_valid": true,
+    "licence_expiry": "2026-09-01",
+    "previous_claims": [
+      {
+        "claim_id": "CLM5002",
+        "date": "2025-11-02",
+        "part_damaged": "door",
+        "amount_settled": 9000
+      },
+      {
+        "claim_id": "CLM5003",
+        "date": "2026-06-18",
+        "part_damaged": "headlight",
+        "amount_settled": 3200
+      }
+    ]
+  },
+  "POL10007": {
+    "policyholder_name": "Suresh Babu",
+    "vehicle_number": "TN33MN6789",
+    "vehicle_model": "Mahindra XUV700",
+    "policy_start_date": "2026-08-01",
+    "policy_end_date": "2027-07-31",
+    "licence_number": "TN0120230006789",
+    "licence_valid": true,
+    "licence_expiry": "2031-01-05",
+    "previous_claims": []
+  },
+  "POL10008": {
+    "policyholder_name": "Lakshmi Venkataraman",
+    "vehicle_number": "TN19OP1122",
+    "vehicle_model": "Hyundai Creta",
+    "policy_start_date": "2024-02-01",
+    "policy_end_date": "2025-01-31",
+    "licence_number": "TN0120160001122",
+    "licence_valid": true,
+    "licence_expiry": "2025-04-20",
+    "previous_claims": []
+  },
+  "POL10009": {
+    "policyholder_name": "Vignesh Raja",
+    "vehicle_number": "TN25QR3344",
+    "vehicle_model": "Maruti Baleno",
+    "policy_start_date": "2025-10-01",
+    "policy_end_date": "2026-09-30",
+    "licence_number": "TN0120210003344",
+    "licence_valid": true,
+    "licence_expiry": "2024-12-01",
+    "previous_claims": []
+  },
+  "POL10010": {
+    "policyholder_name": "Anitha Rajendran",
+    "vehicle_number": "TN02ST5566",
+    "vehicle_model": "Renault Kwid",
+    "policy_start_date": "2025-03-15",
+    "policy_end_date": "2026-03-14",
+    "licence_number": "TN0120200005566",
+    "licence_valid": true,
+    "licence_expiry": "2030-07-22",
+    "previous_claims": []
+  }
+}
