@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import platform
 import pytesseract
 from PIL import Image
 from dotenv import load_dotenv
@@ -21,8 +22,17 @@ def _cache_path(image_path):
 
 # ---Setup---
 load_dotenv()
-genai.configure(api_key=os.getenv("GENAI_API_KEY"))
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+try:
+    import streamlit as st
+    api_key = st.secrets.get("GEMINI_API_KEY", os.getenv("GEMINI_API_KEY"))
+except Exception:
+    api_key = os.getenv("GEMINI_API_KEY")
+
+genai.configure(api_key=api_key)
+
+if platform.system() == "Windows":
+    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+# On Linux (like Streamlit Cloud), tesseract-ocr installs to system PATH automatically — no override needed
 
 
 model = genai.GenerativeModel("gemini-2.5-flash")
@@ -93,9 +103,12 @@ def process_document(image_path, document_type):
     cache_file = _cache_path(image_path)
 
     if os.path.exists(cache_file):
-        print(f"  (using cached result for {image_path})", file=sys.stderr)
         with open(cache_file, "r") as f:
-            return json.load(f)
+            cached_result = json.load(f)
+        # Only trust the cache if it wasn't a stored failure
+        if not cached_result.get("structured_data", {}).get("error"):
+            print(f"  (using cached result for {image_path})", file=sys.stderr)
+            return cached_result
 
     raw_text = extract_text_from_image(image_path)
     structured_data = extract_structured_data(raw_text, document_type)
@@ -105,8 +118,10 @@ def process_document(image_path, document_type):
         "structured_data": structured_data
     }
 
-    with open(cache_file, "w") as f:
-        json.dump(result, f, indent=2)
+    # Only write to cache if this was a real success — never cache a failure
+    if not structured_data.get("error"):
+        with open(cache_file, "w") as f:
+            json.dump(result, f, indent=2)
 
     return result
     

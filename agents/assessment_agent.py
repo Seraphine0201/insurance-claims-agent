@@ -17,7 +17,13 @@ def _cache_path(image_path):
     return os.path.join(CACHE_DIR, f"assessment_{safe_name}.json")
 
 load_dotenv()
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+try:
+    import streamlit as st
+    api_key = st.secrets.get("GEMINI_API_KEY", os.getenv("GEMINI_API_KEY"))
+except Exception:
+    api_key = os.getenv("GEMINI_API_KEY")
+
+genai.configure(api_key=api_key)
 
 model = genai.GenerativeModel("gemini-2.5-flash")
 
@@ -37,9 +43,12 @@ def classify_damage(image_path):
     cache_file = _cache_path(image_path)
 
     if os.path.exists(cache_file):
-        print(f"  (using cached assessment for {image_path})", file=sys.stderr)
         with open(cache_file, "r") as f:
-            return json.load(f)
+            cached_result = json.load(f)
+        # Only trust the cache if it wasn't a stored failure
+        if not cached_result.get("structured_data", {}).get("error"):
+            print(f"  (using cached result for {image_path})", file=sys.stderr)
+            return cached_result
 
     image = Image.open(image_path)
 
@@ -89,8 +98,10 @@ If you cannot identify any damage at all, return an empty damaged_parts list.
             "confidence": "low"
         }
 
-    with open(cache_file, "w") as f:
-        json.dump(result, f, indent=2)
+    # Only write to cache if this was a real success — never cache a failure
+    if not result.get("error"):
+        with open(cache_file, "w") as f:
+            json.dump(result, f, indent=2)
 
     return result
 
