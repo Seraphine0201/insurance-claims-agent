@@ -33,7 +33,7 @@ def get_missing_documents(doc_files):
     missing = required_types - found_types
     return sorted(missing)
 
-st.set_page_config(page_title="Third-Party Claims Triage", layout="wide")
+# st.set_page_config(page_title="Third-Party Claims Triage",page_icon="🚗", layout="wide")
 
 st.title("🚗 Third-Party Insurance Claims Triage System")
 st.caption("Multi-agent AI system — upload policyholder documents and damage photos to process a claim")

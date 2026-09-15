@@ -8,6 +8,7 @@ from agents.verification_agent import verify_claim
 from agents.assessment_agent import assess_damage
 from agents.fraud_agent import run_fraud_check
 from agents.decision_agent import make_decision
+from audit_log import append_audit_entry
 
 CLAIMS_FOLDER = "claims"
 os.makedirs(CLAIMS_FOLDER, exist_ok=True)
@@ -25,11 +26,19 @@ DOCUMENT_TYPE_HINTS = {
 
 
 def generate_claim_id():
-    """Look at existing claim folders and generate the next sequential ID."""
+    """Look at existing claim folders and generate the next sequential ID,
+    based on the highest number seen so far — not just a count, so it works
+    correctly even if earlier claim folders were deleted."""
     existing = glob.glob(os.path.join(CLAIMS_FOLDER, "CLAIM_*"))
-    next_number = len(existing) + 1
-    return f"CLAIM_{next_number:05d}"  # e.g. CLAIM_00001
-
+    highest_number = 0
+    for folder_path in existing:
+        folder_name = os.path.basename(folder_path)
+        try:
+            number = int(folder_name.replace("CLAIM_", ""))
+            highest_number = max(highest_number, number)
+        except ValueError:
+            continue
+    return f"CLAIM_{highest_number + 1:05d}"
 
 def guess_document_type(filename):
     """Figure out what kind of document this is, based on its filename."""
@@ -63,6 +72,7 @@ def _system_error_record(claim_id, claim_folder, intake_results, reason):
     with open(record_path, "w") as f:
         json.dump(claim_record, f, indent=2)
     print(f"Claim {claim_id}: SYSTEM_ERROR — {reason}")
+    append_audit_entry(claim_record)
     return claim_record
 
 def process_claim(input_docs_folder, input_photos_folder):
@@ -73,7 +83,7 @@ def process_claim(input_docs_folder, input_photos_folder):
     """
     claim_id = generate_claim_id()
     claim_folder = os.path.join(CLAIMS_FOLDER, claim_id)
-    os.makedirs(claim_folder, exist_ok=True)
+    os.makedirs(claim_folder, exist_ok=False)
 
     print(f"Processing new claim: {claim_id}")
 
@@ -190,5 +200,7 @@ def process_claim(input_docs_folder, input_photos_folder):
 
     print(f"Claim {claim_id} processed. Decision: {decision_result['decision']}")
     print(f"Full record saved to: {record_path}")
+
+    append_audit_entry(claim_record)
 
     return claim_record
